@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")  // Apply the Maven Publish plugin
 }
 
 android {
@@ -13,6 +14,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
+
+
 
     buildTypes {
         release {
@@ -30,6 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
 }
 
 dependencies {
@@ -43,3 +47,16 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24") // Latest Kotlin version
 
 }
+afterEvaluate {
+    publishing{
+        publications{
+            create<MavenPublication>("release"){
+                from(components["release"])
+                groupId = "com.chandra.practice.toast"
+                artifactId = "toast-library"
+                version = "1.0.0"
+            }
+        }
+    }
+}
+

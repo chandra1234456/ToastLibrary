@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id ("maven-publish")
 }
 
 android {
@@ -13,11 +12,12 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     }
+
 
 
     buildTypes {
@@ -51,3 +51,18 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+//https://www.youtube.com/watch?v=6XugK4Sin6w
+/*afterEvaluate {
+    // Iterate through the library variants
+    android.libraryVariants.all { variant ->
+        // Dynamically create MavenPublication for each variant
+        publishing.publications.create(variant.name, MavenPublication) {
+            from components.getByName(variant.name)  // Use `components.getByName()` instead of `findByName()`
+
+            // Set the groupId, artifactId, and version for the Maven publication
+            groupId = 'com.chandra.practice.toastlibrary'
+            artifactId = 'Toast'
+            version = '1.0'
+        }
+    }
+}*/
