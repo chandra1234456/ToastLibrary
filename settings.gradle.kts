@@ -20,7 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ToastLibrary"
-/*include(":app")
-include(":Toast")*/
 include(":app", ":Toast")
 
