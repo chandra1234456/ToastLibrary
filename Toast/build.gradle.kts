@@ -47,6 +47,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24") // Latest Kotlin version
 
 }
+//This is Required For publish the Library
 afterEvaluate {
     publishing{
         publications{
