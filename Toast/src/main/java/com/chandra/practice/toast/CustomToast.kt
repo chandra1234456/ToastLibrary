@@ -1,10 +1,12 @@
 package com.chandra.practice.toast
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 
@@ -26,7 +28,9 @@ object CustomToast {
         val textView = layout.findViewById<MaterialTextView>(R.id.toastTitle)
         val tvMessage = layout.findViewById<MaterialTextView>(R.id.toastMessage)
         val imageIcon = layout.findViewById<ImageView>(R.id.ivToastIcon)
-        val materialCardView = layout.findViewById<MaterialCardView>(R.id.cardView)
+        val materialCardView = layout.findViewById<CardView>(R.id.cardView)
+        val cardView = layout.findViewById<CardView>(R.id.ivCardView)
+        val linearLayout = layout.findViewById<LinearLayout>(R.id.linearLayout)
         textView.text = message
         tvMessage.text = description
         //To find the Toast Add the Respective Icon and Bg color
@@ -36,8 +40,10 @@ object CustomToast {
                         context ,
                         imageIcon ,
                         materialCardView ,
-                        R.drawable.ic_check_circle ,
-                        R.color.red
+                        R.drawable.ic_check ,
+                        R.color.success_bg_color,
+                        cardView,
+                        linearLayout
                                     )
             }
 
@@ -47,7 +53,9 @@ object CustomToast {
                         imageIcon ,
                         materialCardView ,
                         R.drawable.ic_warning ,
-                        R.color.red
+                        R.color.error_bg_color,
+                        cardView,
+                        linearLayout
                                     )
             }
 
@@ -57,7 +65,9 @@ object CustomToast {
                         imageIcon ,
                         materialCardView ,
                         R.drawable.ic_warning_triangle ,
-                        R.color.red
+                        R.color.warning_bg_color,
+                        cardView,
+                        linearLayout
                                     )
             }
 
@@ -67,7 +77,9 @@ object CustomToast {
                         imageIcon ,
                         materialCardView ,
                         R.drawable.ic_information ,
-                        R.color.red
+                        R.color.info_bg_color,
+                        cardView,
+                        linearLayout
                                     )
             }
 
@@ -77,7 +89,9 @@ object CustomToast {
                         imageIcon ,
                         materialCardView ,
                         R.drawable.ic_delete ,
-                        R.color.red
+                        R.color.delete_bg_color,
+                        cardView,
+                        linearLayout
                                     )
             }
         }
@@ -94,29 +108,26 @@ object CustomToast {
     private fun setImageResourceIcon(
         context : Context ,
         imageView : ImageView ,
-        cardView : MaterialCardView ,
+        cardView : CardView ,
         imageResource : Int ,
         resourceColor : Int ,
+        animationCardView : CardView ,
+        linearLayout : LinearLayout,
+
                                     ) {
         imageView.setImageResource(imageResource)
-        cardView.strokeColor = context.getColor(resourceColor)
-        cardView.setBackgroundColor(context.getColor(resourceColor))
+        //cardView.strokeColor = context.getColor(resourceColor)
+        cardView.setCardBackgroundColor(context.getColor(resourceColor))
+        linearLayout.setBackgroundColor(context.getColor(resourceColor))
         //Animation
-        setImageAnimation(imageView)
+        setImageAnimation(context,animationCardView)
     }
 
-    private fun setImageAnimation(imageView : ImageView) {
-        val anim = ValueAnimator.ofFloat(1f , 1.5f)
-        anim.setDuration(3000)
-        anim.addUpdateListener { animation ->
-            imageView.scaleX = animation.animatedValue as Float
-            imageView.scaleY = animation.animatedValue as Float
-        }
-        anim.repeatCount = 1
-        anim.repeatMode = ValueAnimator.REVERSE
-        anim.start()
-
-
+    private fun setImageAnimation(context :Context ,animationCardView: CardView) {
+        // Pulse Animation for Icon
+        val pulseAnimation = AnimationUtils.loadAnimation(context, R.anim.pulse)
+        animationCardView.startAnimation(pulseAnimation)
     }
+
 }
 

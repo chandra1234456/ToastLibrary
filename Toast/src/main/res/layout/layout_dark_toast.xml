@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="10dp">
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/dark_bg_color"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/ivCardView"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -49,7 +48,7 @@
                 android:layout_gravity="center"
                 android:text="New Toast"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -59,12 +58,12 @@
                 android:layout_gravity="center"
                 android:text="New Toast"
                 android:textColor="@color/black"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
         </LinearLayout>
     </LinearLayout>
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
 
 
